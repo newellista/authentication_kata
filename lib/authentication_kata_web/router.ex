@@ -17,6 +17,8 @@ defmodule AuthenticationKataWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    resources "/users", UsersController
   end
 
   # Other scopes may use custom stacks.

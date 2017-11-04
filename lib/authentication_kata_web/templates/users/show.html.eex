@@ -1,0 +1,28 @@
+<h2>Show Users</h2>
+
+<ul>
+
+  <li>
+    <strong>Firstname:</strong>
+    <%= @users.firstname %>
+  </li>
+
+  <li>
+    <strong>Lastname:</strong>
+    <%= @users.lastname %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @users.email %>
+  </li>
+
+  <li>
+    <strong>Password hash:</strong>
+    <%= @users.password_hash %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: users_path(@conn, :edit, @users) %></span>
+<span><%= link "Back", to: users_path(@conn, :index) %></span>
