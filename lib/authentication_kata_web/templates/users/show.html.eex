@@ -3,23 +3,13 @@
 <ul>
 
   <li>
-    <strong>Firstname:</strong>
-    <%= @users.firstname %>
-  </li>
-
-  <li>
-    <strong>Lastname:</strong>
-    <%= @users.lastname %>
+    <strong>Name:</strong>
+    <%= @users.firstname %> <%= @users.lastname %>
   </li>
 
   <li>
     <strong>Email:</strong>
     <%= @users.email %>
-  </li>
-
-  <li>
-    <strong>Password hash:</strong>
-    <%= @users.password_hash %>
   </li>
 
 </ul>

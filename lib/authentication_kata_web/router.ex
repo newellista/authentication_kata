@@ -7,6 +7,7 @@ defmodule AuthenticationKataWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug AuthenticationWebKata.Auth, repo: AuthenticationKata.Repo
   end
 
   pipeline :api do
@@ -18,6 +19,7 @@ defmodule AuthenticationKataWeb.Router do
 
     get "/", PageController, :index
 
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
     resources "/users", UsersController
   end
 

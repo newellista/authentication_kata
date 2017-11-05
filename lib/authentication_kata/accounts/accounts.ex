@@ -51,7 +51,7 @@ defmodule AuthenticationKata.Accounts do
   """
   def create_users(attrs \\ %{}) do
     %Users{}
-    |> Users.changeset(attrs)
+    |> Users.save_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -67,9 +67,14 @@ defmodule AuthenticationKata.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_users(%Users{} = users, attrs) do
+  def update_users(%Users{} = users, %{"firstname" => _, "lastname" => _, "email" => _, "password" => "", "password_confirmation" => ""} = attrs) do
     users
-    |> Users.changeset(attrs)
+    |> Users.update_no_password_changeset(attrs)
+    |> Repo.update()
+  end
+  def update_users(%Users{} = users, %{"firstname" => _, "lastname" => _, "email" => _, "password" => _, "password_confirmation" => _} = attrs) do
+    users
+    |> Users.update_changeset(attrs)
     |> Repo.update()
   end
 

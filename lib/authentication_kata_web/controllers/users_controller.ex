@@ -1,8 +1,20 @@
 defmodule AuthenticationKataWeb.UsersController do
   use AuthenticationKataWeb, :controller
+  plug :authenticate when action in [:index, :show]
 
   alias AuthenticationKata.Accounts
   alias AuthenticationKata.Accounts.Users
+
+  defp authenticate(conn, _opts) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+        |> put_flash(:error, "You must be logged in")
+        |> redirect(to: page_path(conn, :index))
+        |> halt()
+    end
+  end
 
   def index(conn, _params) do
     users = Accounts.list_users()
